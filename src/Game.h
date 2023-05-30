@@ -1,6 +1,6 @@
 // Game.h
 
-#include "SDL.h"
+#include <SDL2.h>
 
 class Game
 {
