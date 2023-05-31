@@ -8,7 +8,7 @@ int main(int argc, char * argv[])
   
   while (game.isRunning())
   {
-    game.readUserInputs();
+    game.readUserInput();
     game.wait();
   }
   

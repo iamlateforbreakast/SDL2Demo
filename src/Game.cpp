@@ -14,10 +14,14 @@ void Game::start()
   
 bool Game::isRunning()
 {
-  return FALSE;
+  return false;
 }
 
 void Game::readUserInput()
+{
+}
+
+void Game::wait()
 {
 }
 
@@ -28,18 +32,5 @@ void Game::complete()
 void Game::initSDL()
 {
 
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
 }
+
