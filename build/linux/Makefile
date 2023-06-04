@@ -1,3 +1,4 @@
+#
 CXX = g++
 CXXFLAGS := -g -I/usr/include/SDL2 -D_REENTRANT -I../../src
 LDFLAGS := -lSDL2
