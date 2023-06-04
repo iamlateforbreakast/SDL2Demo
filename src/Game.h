@@ -10,13 +10,16 @@ class Game
     Game();
     ~Game();
     void start();
-    bool isRunning();
+    bool getIsRunning();
     void readUserInput();
     void wait();
     void complete();
   private:
     SDL_Renderer * renderer;
     SDL_Window * window;
+    int screen_width;
+    int screen_height;
+    bool isRunning;
     void initSDL();
 };
 

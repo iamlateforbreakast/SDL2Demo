@@ -6,7 +6,7 @@ int main(int argc, char * argv[])
   
   game.start();
   
-  while (game.isRunning())
+  while (game.getIsRunning())
   {
     game.readUserInput();
     game.wait();
