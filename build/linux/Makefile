@@ -1,7 +1,7 @@
 #
 CXX = g++
 CXXFLAGS := -g -Wall -I/usr/include/SDL2 -D_REENTRANT -I../../src
-LDFLAGS := -lSDL2
+LDFLAGS := -lSDL2 -lSDL2_image
 
 TARGET_EXEC := SDL2Demo
 
