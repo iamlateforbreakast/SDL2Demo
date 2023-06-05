@@ -47,6 +47,7 @@ void Game::readUserInput()
 
 void Game::wait()
 {
+  SDL_Delay(10);
 }
 
 /*
@@ -97,7 +98,12 @@ void Game::initSDL()
   }
 
   int imgFlags = IMG_INIT_PNG;
-  if( !( IMG_Init( imgFlags ) & imgFlags ) ) {}
+  if( !( IMG_Init( imgFlags ) & imgFlags ) ) 
+  {
+    printf("Couldn't initialize image: %s\n", SDL_GetError());
+    exit(1);
+  }
+  
   std::string path = "../../assets/star.png";
   SDL_Surface* loadedSurface = IMG_Load( path.c_str() );
   texture = SDL_CreateTextureFromSurface( renderer, loadedSurface );
