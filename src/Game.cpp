@@ -1,6 +1,8 @@
 #include "Game.h"
 #include <SDL_image.h>
 
+#include <string>
+
 Game::Game()
 {
   renderer = nullptr;
@@ -47,13 +49,25 @@ void Game::wait()
 {
 }
 
+/*
+  @brief Complete all game activities and prepare to close application
+  @param none
+  @return none
+*/
 void Game::complete()
 {
+  SDL_DestroyTexture(texture);
+  SDL_DestroyRenderer(renderer);
   SDL_DestroyWindow(window);
-  // SDL_FreeSurface(image_surface);
+  IMG_Quit();
   SDL_Quit();
 }
 
+/*
+  @brief Initialises SDL window/images ressources
+  @param none
+  @return none
+*/
 void Game::initSDL()
 {
   int rendererFlags = SDL_RENDERER_ACCELERATED;
@@ -84,15 +98,13 @@ void Game::initSDL()
 
   int imgFlags = IMG_INIT_PNG;
   if( !( IMG_Init( imgFlags ) & imgFlags ) ) {}
-  //SDL_Surface* loadedSurface = IMG_Load( path.c_str() );
-  //newTexture = SDL_CreateTextureFromSurface( gRenderer, loadedSurface );
-  //SDL_FreeSurface( loadedSurface );
+  std::string path = "../../assets/star.png";
+  SDL_Surface* loadedSurface = IMG_Load( path.c_str() );
+  texture = SDL_CreateTextureFromSurface( renderer, loadedSurface );
+  SDL_FreeSurface( loadedSurface );
   SDL_SetRenderDrawColor(renderer, 96, 128, 255, 255);
-  SDL_RenderClear(renderer);
-  // window_surface = SDL_GetWindowSurface(window);
-  // image_surface = SDL_LoadBMP("image.bmp");
-  // SDL_BlitSurface(image_surface, NULL, window_surface, NULL);
-  // SDL_UpdateWindowSurface(window);
+  SDL_Rect dest = { (screen_width - 32)/2, (screen_height - 32)/2, 32, 32};
+  SDL_RenderCopy( renderer, texture, NULL, &dest );
   SDL_RenderPresent(renderer);
 }
 
