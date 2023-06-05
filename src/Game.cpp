@@ -1,7 +1,14 @@
 #include "Game.h"
+#include <SDL_image.h>
 
 Game::Game()
 {
+  renderer = nullptr;
+  window = nullptr;
+  texture = nullptr;
+  isRunning = false;
+  screen_width = 640;
+  screen_height = 480;
 }
 
 Game::~Game()
@@ -10,6 +17,8 @@ Game::~Game()
 
 void Game::start()
 {
+  initSDL();
+  isRunning = true;
 }
   
 bool Game::getIsRunning()
@@ -22,8 +31,6 @@ void Game::readUserInput()
   SDL_Event event;
 
 	SDL_PollEvent(&event);
-	
-  isRunning = true;
 
 	switch (event.type)
 	{
@@ -34,7 +41,6 @@ void Game::readUserInput()
 	  default:
 			break;
 	}
-
 }
 
 void Game::wait()
@@ -43,6 +49,9 @@ void Game::wait()
 
 void Game::complete()
 {
+  SDL_DestroyWindow(window);
+  // SDL_FreeSurface(image_surface);
+  SDL_Quit();
 }
 
 void Game::initSDL()
@@ -72,8 +81,18 @@ void Game::initSDL()
     printf("Couldn't initialize renderer: %s\n", SDL_GetError());
     exit(1);
   }
+
+  int imgFlags = IMG_INIT_PNG;
+  if( !( IMG_Init( imgFlags ) & imgFlags ) ) {}
+  //SDL_Surface* loadedSurface = IMG_Load( path.c_str() );
+  //newTexture = SDL_CreateTextureFromSurface( gRenderer, loadedSurface );
+  //SDL_FreeSurface( loadedSurface );
   SDL_SetRenderDrawColor(renderer, 96, 128, 255, 255);
   SDL_RenderClear(renderer);
+  // window_surface = SDL_GetWindowSurface(window);
+  // image_surface = SDL_LoadBMP("image.bmp");
+  // SDL_BlitSurface(image_surface, NULL, window_surface, NULL);
+  // SDL_UpdateWindowSurface(window);
   SDL_RenderPresent(renderer);
 }
 

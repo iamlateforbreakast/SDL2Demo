@@ -17,6 +17,7 @@ class Game
   private:
     SDL_Renderer * renderer;
     SDL_Window * window;
+    SDL_Texture * texture;
     int screen_width;
     int screen_height;
     bool isRunning;
