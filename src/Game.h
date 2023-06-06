@@ -4,6 +4,8 @@
 
 #include <SDL.h>
 
+#include "Truck.h"
+
 class Game
 {
   public:
@@ -21,6 +23,7 @@ class Game
     int screen_width;
     int screen_height;
     bool isRunning;
+    Truck * truck;
     void initSDL();
 };
 

@@ -17,11 +17,13 @@ Game::Game()
 
 Game::~Game()
 {
+  free(truck);
 }
 
 void Game::start()
 {
   initSDL();
+  truck = new Truck(renderer, (screen_width - 32)/2, (screen_height-32)/2, 5);
   isRunning = true;
 }
   
@@ -49,6 +51,12 @@ void Game::readUserInput()
 
 void Game::wait()
 {
+  if (rand()%1000 > 995) truck->setDirection(rand()%4);
+  truck->move();
+  SDL_RenderClear(renderer); 
+  truck->render(renderer);
+  SDL_RenderPresent(renderer);
+
   SDL_Delay(10);
 }
 
@@ -113,10 +121,7 @@ void Game::initSDL()
   // SDL_SetRenderDrawColor(renderer, 96, 128, 255, 255);
   // SDL_Rect dest = { (screen_width - 128)/2, (screen_height - 64)/2, 128, 64};
   SDL_SetRenderDrawColor(renderer, 96, 128, 255, 255);
-  Truck * truck = new Truck(renderer, 10, 10, 0);
-  truck->render(renderer);
 
   //SDL_RenderCopy( renderer, texture, NULL, &dest );
-  SDL_RenderPresent(renderer);
 }
 
