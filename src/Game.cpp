@@ -1,4 +1,6 @@
 #include "Game.h"
+#include "Truck.h"
+
 #include <SDL_image.h>
 
 #include <string>
@@ -103,14 +105,18 @@ void Game::initSDL()
     printf("Couldn't initialize image: %s\n", SDL_GetError());
     exit(1);
   }
-  
-  std::string path = "../../assets/star.png";
-  SDL_Surface* loadedSurface = IMG_Load( path.c_str() );
-  texture = SDL_CreateTextureFromSurface( renderer, loadedSurface );
-  SDL_FreeSurface( loadedSurface );
+
+  // std::string path = "../../assets/truck_full.png";
+  // SDL_Surface* loadedSurface = IMG_Load( path.c_str() );
+  // texture = SDL_CreateTextureFromSurface( renderer, loadedSurface );
+  // SDL_FreeSurface( loadedSurface );
+  // SDL_SetRenderDrawColor(renderer, 96, 128, 255, 255);
+  // SDL_Rect dest = { (screen_width - 128)/2, (screen_height - 64)/2, 128, 64};
   SDL_SetRenderDrawColor(renderer, 96, 128, 255, 255);
-  SDL_Rect dest = { (screen_width - 32)/2, (screen_height - 32)/2, 32, 32};
-  SDL_RenderCopy( renderer, texture, NULL, &dest );
+  Truck * truck = new Truck(renderer, 10, 10, 0);
+  truck->render(renderer);
+
+  //SDL_RenderCopy( renderer, texture, NULL, &dest );
   SDL_RenderPresent(renderer);
 }
 

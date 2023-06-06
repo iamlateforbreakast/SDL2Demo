@@ -9,11 +9,14 @@ class Truck
   public:
     Truck(SDL_Renderer * renderer, int x, int y, int speed);
     ~Truck();
-    SDL_Texture * getTexture();
+    void render(SDL_Renderer * renderer);
   private:
     int x;
     int y;
     int speed;
-    SDL_Texture * texture;
+    int direction;
+    int counter;
+    static int refCount;
+    static SDL_Texture * texture;
 };
 #endif // _TRUCK_
