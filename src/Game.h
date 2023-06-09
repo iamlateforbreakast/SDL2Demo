@@ -5,6 +5,7 @@
 #include <SDL.h>
 
 #include "Truck.h"
+#include "Map.h"
 
 class Game
 {
@@ -24,6 +25,7 @@ class Game
     int screen_height;
     bool isRunning;
     Truck * truck;
+    Map * map;
     void initSDL();
 };
 

@@ -18,11 +18,13 @@ Game::Game()
 Game::~Game()
 {
   free(truck);
+  free(map);
 }
 
 void Game::start()
 {
   initSDL();
+  map = new Map(renderer);
   truck = new Truck(renderer, (screen_width - 32)/2, (screen_height-32)/2, 5);
   isRunning = true;
 }
@@ -52,8 +54,14 @@ void Game::readUserInput()
 void Game::wait()
 {
   if (rand()%1000 > 995) truck->setDirection(rand()%4);
+  // truck.getXY()
+  // convertToMap(X,Y)
+  // direction = Map.getDirection(XMAP, YMAP, direction)
+  // truck.setDirection(direction)
   truck->move();
-  SDL_RenderClear(renderer); 
+  SDL_RenderClear(renderer);
+  //map->render(renderer);
+  map->render(renderer);
   truck->render(renderer);
   SDL_RenderPresent(renderer);
 
