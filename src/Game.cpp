@@ -23,9 +23,15 @@ Game::~Game()
 
 void Game::start()
 {
+  int spawnx;
+  int spawny;
+
   initSDL();
   map = new Map(renderer);
-  truck = new Truck(renderer, (screen_width - 32)/2, (screen_height-32)/2, 5);
+  map->getSpawn(spawnx, spawny);
+
+  truck = new Truck(renderer, spawnx * 32, spawny * 32, 5);
+  truck->setDirection(1 << (rand()%4));
   isRunning = true;
 }
   
@@ -53,7 +59,6 @@ void Game::readUserInput()
 
 void Game::wait()
 {
-  if (rand()%1000 > 995) truck->setDirection(rand()%4);
   // truck.getXY()
   // convertToMap(X,Y)
   // direction = Map.getDirection(XMAP, YMAP, direction)

@@ -52,7 +52,7 @@ void Truck::move()
   if (this->speedCounter!=0) return;
   switch (this->direction)
   {
-    case 0:
+    case 2:
       if (this->y<480-32) this->y++;
       this->counter = (this->counter + 1) % 10;
       break;
@@ -60,11 +60,11 @@ void Truck::move()
       if (this->x>0) this->x--;
       this->counter = (this->counter + 1) % 10;
       break;
-    case 2:
+    case 8:
       if (this->y>0) this->y--;
       this->counter = (this->counter + 1) % 10;
       break;
-    case 3:
+    case 4:
       if (this->x<640-32) this->x++;
       this->counter = (this->counter + 1) % 10;
       break;
